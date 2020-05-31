@@ -135,3 +135,6 @@ async function promptMessage(message, author, time, reactions){
 
     return message.awaitReactions(filter, {max:1, time: time}).then(collected.first() && collected.first().emoji.name);
 }
+
+
+bot.login(process.env.token);

@@ -12,6 +12,23 @@ client.on("ready", async () => {
     
 });
 
+// RANG JOIN
+client.on("guildMemberAdd", member =>{
+
+    var role = member.guild.roles.cache.get('705795057361616939');
+
+    if(!role) return;
+
+    member.roles.add(role);
+
+    var channel = member.guild.afkChannelID.cache.get('663095149915537458');
+
+    if(!channel) return;
+
+    channel.send(`Welkom bij de server ${member}`);
+
+})
+
 
 client.on("message", async message =>{
 

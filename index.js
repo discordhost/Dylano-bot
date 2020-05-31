@@ -21,7 +21,7 @@ client.on("guildMemberAdd", member =>{
 
     member.roles.add(role);
 
-    var channel = member.guild.afkChannelID.cache.get('663095149915537458');
+    var channel = member.guild.afkChannelID.cache.any('663095149915537458');
 
     if(!channel) return;
 

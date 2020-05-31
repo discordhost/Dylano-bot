@@ -1,6 +1,7 @@
 const discord = require("discord.js");
 const botConfig = require("./botconfig.json");
 const client = new discord.Client();
+const token = process.env.token;
 
 
 // ONLINE MESSAGE
@@ -120,7 +121,6 @@ client.on("message", async message =>{
     }
 });
 
-bot.login(process.env.token);
 
 async function promptMessage(message, author, time, reactions){
 
@@ -134,3 +134,6 @@ async function promptMessage(message, author, time, reactions){
 
     return message.awaitReactions(filter, {max:1, time: time}).then(collected.first() && collected.first().emoji.name);
 }
+
+
+client.login(token).catch(err => console.log(err));

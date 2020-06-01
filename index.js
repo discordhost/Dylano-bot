@@ -109,7 +109,7 @@ client.on("message", async message =>{
         var botEmbed = new discord.MessageEmbed()
         .setTitle("Twitch")
         .setDescription("Hier heb je een linkje om naar de Twitch channel te gaan!")
-        .setFields(
+        .addFields(
             {name: "Twitch link", value:"https://www.twitch.tv/dylanodelaere"}
         )
         .setColor("#a708f8")

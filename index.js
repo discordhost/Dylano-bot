@@ -1,7 +1,31 @@
 const discord = require("discord.js");
 const botConfig = require("./botconfig.json");
+const fs = require("fs")
 const client = new discord.Client();
+bot.commands = new discord.Collection();
 const token = process.env.token;
+
+fs.readdir("./commands/", (err, files) => {
+
+    if(err) console.log(err);
+
+    var jsFiles = files.filter(f => f.split(".").pop() === "js");
+
+    if(jsFiles.length <=0) {
+        console.log("Kon geen file vinden!");
+        return;
+    }
+
+    jsFiles.forEach((f, i) => {
+
+        var fileGet = require(`./commands/${f}`);
+        console.log(`De file ${f} is geladen!`);
+
+        bot.commands.set(fileGet.help.name, fileGet);
+
+    })
+
+});
 
 
 // ONLINE MESSAGE
@@ -42,11 +66,17 @@ client.on("message", async message =>{
 
     var command = messageArray[0];
 
+    var args = messageArray.slice(1);
+
+    var commands = bot.commands.get(command.slice(prefix.length));
+
+    if(commands) commands.run(bot,message, args);
+
 
     // HELP
-    if(command === `${prefix}help`){
-        return message.channel.send("&help komt binnenkort!");
-    }
+    //if(command === `${prefix}help`){
+    //    return message.channel.send("&help komt binnenkort!");
+    //}
 
     // KICK
     if(command === `${prefix}kick`){
@@ -106,7 +136,6 @@ client.on("message", async message =>{
     }
 
     // MUTE
-    if(command === `${prefix}straf`){
     module.exports.run = async (client, message, args) => {
 
     if (!message.member.hasPermission("KICK_MEMBER")) return message.reply("Jij kan niemand straffen!");
@@ -132,7 +161,7 @@ client.on("message", async message =>{
     message.channel.send(`${mutePerson} is nu gestaft voor ${muteTime}`);
 
 
-}}
+}
 
     // COMMANDS
     if(command === `${prefix}commands`){

@@ -108,8 +108,8 @@ client.on("message", async message =>{
 
         var botEmbed = new discord.MessageEmbed()
         .setTitle("Twitch")
-        .setDescription("Hier heb je een linkje om naar de twitch channel te gaan!")
-        .setDescription("https://www.twitch.tv/dylanodelaere")
+        .setDescription("Hier heb je een linkje om naar de Twitch channel te gaan!")
+        .setField("https://www.twitch.tv/dylanodelaere")
         .setColor("#a708f8")
         .setFooter("Server: Dylano")
         .setTimestamp()

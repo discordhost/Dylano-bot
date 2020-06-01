@@ -106,6 +106,7 @@ client.on("message", async message =>{
     }
 
     // MUTE
+    module.exports.run = async (client, message, args) => {
     if(command === `${prefix}straf`){
 
     if (!message.member.hasPermission("KICK_MEMBER")) return message.reply("Jij kan niemand straffen!");
@@ -131,7 +132,7 @@ client.on("message", async message =>{
     message.channel.send(`${mutePerson} is nu gestaft voor ${muteTime}`);
 
 
-}
+}}
 
     // COMMANDS
     if(command === `${prefix}commands`){

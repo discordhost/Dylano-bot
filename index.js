@@ -134,8 +134,8 @@ client.on("message", async message =>{
         message.channel.send(`${person.user.tag} is nu gestraft voor`);
 
         setTimeout(function(){
-            person.addRole(mainrole.id)
-            person.removeRole(muterole.id)
+            person.roles.add(mainrole.id)
+            person.roles.remove(muterole.id)
             message.channel.send(`${person.user.tag} is niet meer gestraft!`)
         }, ms(time));
     }

@@ -98,7 +98,7 @@ client.on("message", async message =>{
         .setDescription("druk alt - F4 als je de stream niet leuk vind!")
         .setColor("#02ff00")
         .setFooter("Server: Dylano")
-        .setTimestamp
+        .setTimestamp()
         return message.channel.send(botEmbed);
     }
 

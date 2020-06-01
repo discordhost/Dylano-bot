@@ -125,14 +125,18 @@ client.on("message", async message =>{
 
         if (mutePerson.hasPermission("MANAGE_MESSAGES")) return message.reply("Je kan deze persoon niet straffen!");
 
+        var realRole = message.guild.roles.cache.get('715448011789959232');
+        if (!realRole) return message.reply("Rol is niet goed ingesteld! Vraag aan de maker van de dot om het goed te zetten!");
+
         var muteRole = message.guild.roles.cache.get('715448159412813905');
-        if (!muteRole) return message.reply("Rol is niet goed ingeteld! Vraag aan de maker van de bot om het goed te zetten!");
+        if (!muteRole) return message.reply("Rol is niet goed ingesteld! Vraag aan de maker van de bot om het goed te zetten!");
 
         var muteTime = args[1];
 
         if (!muteTime) return message.reply("Geen tijd gevonden!");
 
         await(mutePerson.roles.add(muteRole.id));
+        (mutePerson.roles.remove(realRole.id));
         message.channel.send(`${mutePerson} is nu gestraft voor ${muteTime}`);
 
         setTimeout(() => {

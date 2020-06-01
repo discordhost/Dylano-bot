@@ -29,33 +29,6 @@ client.on("guildMemberAdd", member =>{
 
 })
 
-// MUTE
-module.exports.run = async (client, message, args) => {
-
-    if (!message.member.hasPermission("KICK_MEMBER")) return message.reply("Jij kan niemand straffen!");
-
-    if (!args[0]) return message.reply("Geef een persoon op die ik moet straffen!");
-
-    if (!message.guild.me.hasPermission("KICK_MEMBER")) return message.reply("Jij kan niemand straffen!");
-
-    var mutePerson = message.guild.member(message.mentions.users.first() || message.guild.member.get(args[0]));
-
-    if (!mutePerson) return message.reply("Kan persoon niet vinden in deze server!");
-
-    if (mutePerson.hasPermission("MANAGE_MESSAGES")) return message.reply("Deze persoon kan niet gestraft worden!");
-
-    var muteRole = message.guild.roles.cache.get('715448159412813905');
-    if(!muteRole) return message.channel.send("De rol is niet gevonden!");
-
-    var muteTime = args[1];
-
-    if(!muteTime) return message.reply("Geen tijd opgegeven!");
-
-    await(mutePerson.roles.add(muteRole.id));
-    message.channel.send(`${mutePerson} is nu gestaft voor ${muteTime}`);
-
-
-}
 
 client.on("message", async message =>{
 
@@ -131,6 +104,34 @@ client.on("message", async message =>{
             }
         })
     }
+
+    // MUTE
+module.exports.run = async (client, message, args) => {
+
+    if (!message.member.hasPermission("KICK_MEMBER")) return message.reply("Jij kan niemand straffen!");
+
+    if (!args[0]) return message.reply("Geef een persoon op die ik moet straffen!");
+
+    if (!message.guild.me.hasPermission("KICK_MEMBER")) return message.reply("Jij kan niemand straffen!");
+
+    var mutePerson = message.guild.member(message.mentions.users.first() || message.guild.member.get(args[0]));
+
+    if (!mutePerson) return message.reply("Kan persoon niet vinden in deze server!");
+
+    if (mutePerson.hasPermission("MANAGE_MESSAGES")) return message.reply("Deze persoon kan niet gestraft worden!");
+
+    var muteRole = message.guild.roles.cache.get('715448159412813905');
+    if(!muteRole) return message.channel.send("De rol is niet gevonden!");
+
+    var muteTime = args[1];
+
+    if(!muteTime) return message.reply("Geen tijd opgegeven!");
+
+    await(mutePerson.roles.add(muteRole.id));
+    message.channel.send(`${mutePerson} is nu gestaft voor ${muteTime}`);
+
+
+}
 
     // COMMANDS
     if(command === `${prefix}commands`){

@@ -31,7 +31,7 @@ client.on("guildMemberAdd", member =>{
 
     channel.send(`Welkom bij de server ${member}`);
 
-})
+});
 
 
 // ALLE BERICHTEN
@@ -49,11 +49,6 @@ client.on("message", async message =>{
 
     var args = messageArray.slice(1);
 
-
-    // HELP
-    if(command === `${prefix}help`){
-        return message.channel.send("&help komt binnenkort!");
-    }
 
 
     // STRAF
@@ -92,6 +87,19 @@ client.on("message", async message =>{
             message.channel.send(`${mutePerson} is niet meer gestraft!`);
 
         }, ms(muteTime));
+    }
+
+    
+    // HELP
+    if(command === `${prefix}help`){
+
+        var botEmbed = new discord.MessageEmbed()
+        .setTitle("Help")
+        .setDescription("druk alt - F4 als je de stream niet leuk vind!")
+        .setColor("#02ff00")
+        .setFooter("Server: Dylano")
+        .setTimestamp
+        return message.channel.send(botEmbed);
     }
 
 

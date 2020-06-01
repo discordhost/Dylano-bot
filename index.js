@@ -95,7 +95,7 @@ client.on("message", async message =>{
 
         var botEmbed = new discord.MessageEmbed()
         .setTitle("Help")
-        .setDescription("Druk alt - F4 als je de stream niet leuk vind!")
+        .setDescription("Werkt nog niet!")
         .setColor("#05f8f8")
         .setFooter("Server: Dylano")
         .setTimestamp()

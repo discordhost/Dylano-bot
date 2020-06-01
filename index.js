@@ -118,8 +118,8 @@ client.on("message", async message =>{
         if(!person) return message.reply("Kan persoon niet vinden!");
 
         var mainrole = message.guild.roles.cache.find(role => role.name === "Kijker");
-
         var muterole = message.guild.roles.cache.find(role => role.name === "gestraft");
+        
         if(!muterole) return message.reply("Kan role niet vinden!");
 
         var time = args[2];

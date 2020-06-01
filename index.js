@@ -142,6 +142,7 @@ client.on("message", async message =>{
         setTimeout(() => {
             
             mutePerson.roles.remove(muteRole.id);
+            mutePerson.roles.add(realRole.id);
             message.channel.send(`${mutePerson} is niet meer gestraft!`);
 
         }, ms(muteTime));

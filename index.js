@@ -113,7 +113,7 @@ client.on("message", async message =>{
     // MUTE
     if(command === `${prefix}straf`){
 
-        var person = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[1]));
+        var person = message.guild.member(message.mentions.users.first() || message.guild.members.fetch(args[1]));
 
         if(!person) return message.reply("Kan persoon niet vinden!");
 

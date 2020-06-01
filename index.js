@@ -106,8 +106,8 @@ client.on("message", async message =>{
     }
 
     // MUTE
-    module.exports.run = async (client, message, args) => {
     if(command === `${prefix}straf`){
+    module.exports.run = async (client, message, args) => {
 
     if (!message.member.hasPermission("KICK_MEMBER")) return message.reply("Jij kan niemand straffen!");
 

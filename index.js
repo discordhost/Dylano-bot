@@ -110,34 +110,37 @@ client.on("message", async message =>{
         })
     }
 
-    // MUTE
+    // STRAF
     if(command === `${prefix}straf`){
 
-        var person = message.guild.member(message.mentions.users.first() || message.guild.members.fetch(args[1]));
+        if (!message.member.hasPermission("KICK_MEMBERS")) return message.reply("Jij kan niemand straffen!");
 
-        if(!person) return message.reply("Kan persoon niet vinden!");
+        if (!args[0]) return message.reply("Geen presoon opgegeven!");
 
-        var mainrole = message.guild.roles.cache.find(role => role.name === "Kijker");
-        var muterole = message.guild.roles.cache.find(role => role.name === "gestraft");
-        
-        if(!muterole) return message.reply("Kan role niet vinden!");
+        if (!message.guild.me.hasPermission("KICK_MEMBERS")) return message.reply("Geen toegang om iemand te straffen!");
 
-        var time = args[2];
+        var mutePerson = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
 
-        if(!time){
-            return message.reply("Je hebt geen tijd ingevuld!")
-        }
+        if (!mutePerson) returnmessage.reply("Kan persoon niet vinden!");
 
-        person.roles.remove(mainrole.id);
-        person.roles.add(muterole.id);
+        if (mutePerson.hasPermission("MANAGE_MESSAGES")) return message.reply("Je kan deze persoon niet straffen!");
 
-        message.channel.send(`${person.user.tag} is nu gestraft voor`);
+        var muteRole = message.guild.roles.cache.get('715448159412813905');
+        if (!muteRole) return message.reply("Rol is niet goed ingeteld! Vraag aan de maker van de bot om het goed te zetten!");
 
-        setTimeout(function(){
-            person.roles.add(mainrole.id)
-            person.roles.remove(muterole.id)
-            message.channel.send(`${person.user.tag} is niet meer gestraft!`)
-        }, ms(time));
+        var muteTime = args[1];
+
+        if (!muteTime) return message.reply("Geen tijd gevonden!");
+
+        await(mutePerson.roles.add(muteRole.id));
+        message.channel.send(`${mutePerson} is nu gestraft voor ${muteTime}`);
+
+        setTimeout(() => {
+            
+            mutePerson.roles.remove(muteRole.id);
+            message.channel.send(`${mutePerson} is niet meer gestraft!`);
+
+        }, ms(muteTime));
     }
 
     // COMMANDS

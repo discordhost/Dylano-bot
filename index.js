@@ -126,7 +126,8 @@ client.on("message", async message =>{
         .setColor("#f80606")
         .addFields(
             {name: "Help command", value:"&help"},
-            {name: "Info over de server", value:"&serverinfo"}
+            {name: "Info over de server", value:"&serverinfo"},
+            {mane: "Twitch link", value: "&twitch"}
         )
         .setFooter("Server: Dylano", "https://imgur.com/w9x1Jwe.png")
         .setTimestamp()

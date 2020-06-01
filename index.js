@@ -123,8 +123,9 @@ client.on("message", async message =>{
         if(!muterole) return message.reply("Kan role niet vinden!");
 
         var time = args[2];
+
         if(!time){
-            return message.reply("Je hebt geen tijd ingevuld!");
+            return message.reply("Je hebt geen tijd ingevuld!")
         }
 
         person.removeRole(mainrole.id);

@@ -70,7 +70,7 @@ client.on("message", async message =>{
 
     var args = messageArray.slice(1);
 
-    var commands = bot.commands.get(command.slice(prefix.length));
+    var commands = commands.get(command.slice(prefix.length));
 
     if(commands) commands.run(bot,message, args);
 

@@ -96,7 +96,7 @@ client.on("message", async message =>{
         var botEmbed = new discord.MessageEmbed()
         .setTitle("Help")
         .setDescription("Druk alt - F4 als je de stream niet leuk vind!")
-        .setColor("#02ff00")
+        .setColor("#05f8f8")
         .setFooter("Server: Dylano")
         .setTimestamp()
         return message.channel.send(botEmbed);
@@ -112,7 +112,7 @@ client.on("message", async message =>{
         .addFields(
             {name: "Twitch link", value:"https://www.twitch.tv/dylanodelaere"}
         )
-        .setColor("#a708f8")
+        .setColor("#9f2be2")
         .setFooter("Server: Dylano")
         .setTimestamp()
         return message.channel.send(botEmbed);
@@ -125,7 +125,7 @@ client.on("message", async message =>{
         var botEmbed = new discord.MessageEmbed()
         .setTitle("Alle commands voor deze bot!")
         .setDescription("Hier kan je alle commands zien die je kan gebruiken mat deze bot!")
-        .setColor("#f80606")
+        .setColor("#05f8f8")
         .addFields(
             {name: "Help command", value:"&help"},
             {name: "Info over de server", value:"&serverinfo"},
@@ -147,7 +147,7 @@ client.on("message", async message =>{
             {name: "Je bent lid geworden van deze server sinds:", value:message.member.joinedAt},
             {name: "Bot naam", value:client.user.username}
         )
-        .setColor("#f80606")
+        .setColor("#05f8f8")
         .setFooter("Server: Dylano", "https://imgur.com/w9x1Jwe.png")
         .setTimestamp()
         return message.channel.send(botEmbed);

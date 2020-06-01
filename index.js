@@ -1,36 +1,13 @@
 const discord = require("discord.js");
 const botConfig = require("./botconfig.json");
-const fs = require("fs")
 const client = new discord.Client();
-const commands = new discord.Collection();
+const ms = require('ms');
 const token = process.env.token;
 
 
 
-fs.readdir("./commands/", (err, files) => {
 
-    if(err) console.log(err);
-
-    var jsFiles = files.filter(f => f.split(".").pop() === "js");
-
-    if(jsFiles.length <=0) {
-        console.log("Kon geen file vinden!");
-        return;
-    }
-
-    jsFiles.forEach((f, i) => {
-
-        var fileGet = require(`./commands/${f}`);
-        console.log(`De file ${f} is geladen!`);
-
-        commands.get(fileGet.help.name, fileGet);
-
-    })
-
-});
-
-
-// ONLINE MESSAGE
+// ONLINE MESSAGE LOG
 client.on("ready", async () => {
 
     console.log(`${client.user.username} is now online`);
@@ -55,7 +32,7 @@ client.on("guildMemberAdd", member =>{
 
 })
 
-
+// ALLE BERICHTEN
 client.on("message", async message =>{
 
     if(message.author.bot) return;
@@ -70,15 +47,11 @@ client.on("message", async message =>{
 
     var args = messageArray.slice(1);
 
-    var commands = command.get(command.slice(prefix.length));
-
-    if(commands) commands.run(bot,message, args);
-
 
     // HELP
-    //if(command === `${prefix}help`){
-    //    return message.channel.send("&help komt binnenkort!");
-    //}
+    if(command === `${prefix}help`){
+        return message.channel.send("&help komt binnenkort!");
+    }
 
     // KICK
     if(command === `${prefix}kick`){
@@ -138,32 +111,33 @@ client.on("message", async message =>{
     }
 
     // MUTE
-    module.exports.run = async (client, message, args) => {
+    if(command === `${prefix}straf`){
 
-    if (!message.member.hasPermission("KICK_MEMBER")) return message.reply("Jij kan niemand straffen!");
+        var person = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[1]));
 
-    if (!args[0]) return message.reply("Geef een persoon op die ik moet straffen!");
+        if(!person) return message.reply("Kan persoon niet vinden!");
 
-    if (!message.guild.me.hasPermission("KICK_MEMBER")) return message.reply("Jij kan niemand straffen!");
+        var mainrole = message.guild.roles.find(role => role.name === "Kijker");
 
-    var mutePerson = message.guild.member(message.mentions.users.first() || message.guild.member.get(args[0]));
+        var muterole = message.guild.roles.find(role => role.name === "gestraft");
+        if(!muterole) return message.reply("Kan role niet vinden!");
 
-    if (!mutePerson) return message.reply("Kan persoon niet vinden in deze server!");
+        var time = args[2];
+        if(!time){
+            return message.reply("Je hebt geen tijd ingevuld!");
+        }
 
-    if (mutePerson.hasPermission("MANAGE_MESSAGES")) return message.reply("Deze persoon kan niet gestraft worden!");
+        person.removeRole(mainrole.id);
+        person.addRole(muterole.id);
 
-    var muteRole = message.guild.roles.cache.get('715448159412813905');
-    if(!muteRole) return message.channel.send("De rol is niet gevonden!");
+        message.channel.send(`${person.user.tag} is nu gestraft voor ${ms(ms(time))}`);
 
-    var muteTime = args[1];
-
-    if(!muteTime) return message.reply("Geen tijd opgegeven!");
-
-    await(mutePerson.roles.add(muteRole.id));
-    message.channel.send(`${mutePerson} is nu gestaft voor ${muteTime}`);
-
-
-}
+        setTimeout(function(){
+            person.addRole(mainrole.id)
+            person.removeRole(muterole.id)
+            message.channel.send(`${person.user.tag} is niet meer gestraft!`)
+        }, ms(time));
+    }
 
     // COMMANDS
     if(command === `${prefix}commands`){
@@ -181,7 +155,7 @@ client.on("message", async message =>{
         return message.channel.send(botEmbed);
     }
 
-    //SERVERINFO
+    // SERVERINFO
     if(command === `${prefix}serverinfo`){
         
         var botEmbed = new discord.MessageEmbed()

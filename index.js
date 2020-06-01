@@ -15,6 +15,7 @@ client.on("ready", async () => {
     
 });
 
+
 // RANG JOIN
 client.on("guildMemberAdd", member =>{
 
@@ -31,6 +32,7 @@ client.on("guildMemberAdd", member =>{
     channel.send(`Welkom bij de server ${member}`);
 
 })
+
 
 // ALLE BERICHTEN
 client.on("message", async message =>{
@@ -53,62 +55,6 @@ client.on("message", async message =>{
         return message.channel.send("&help komt binnenkort!");
     }
 
-    // KICK
-    if(command === `${prefix}kick`){
-
-        var args = message.content.slice(prefix.length).split(/ +/);
-
-        if(!message.member.hasPermission("KICK_MEMBERS")) return message.reply("Jij kan niemand kicken!");
-
-        if(!message.guild.me.hasPermission("KICK_MEMBERS")) return message.reply("Je heb geen toegang om iemand te kicken");
-
-        if(!args[1]) return message.reply("Er is geen persoon opgegeven!");
-
-        if(!args[2]) return message.reply("Er is geen reden opgegeven!");
-
-        var kickUser = message.guild.member (message.mentions.users.first() || message.guild.members.get(args[1]));
-
-        var Reason = args.splice(2).join(" ");
-
-        if(!kickUser) return message.reply("Persoon niet gevonden!");
-
-        var embedPrompt = new discord.MessageEmbed()
-            .setColor("GREEN")
-            .setTitle("Gelieve binnen 30 sec te reageren")
-            .setDescription(`Wil je ${kickUser} kicken?`)
-
-        var embed = new discord.MessageEmbed()
-            .setColor("#d42424")
-            .setFooter(message.member.displayName)
-            .setTimestamp
-            .setDescription(`**Gekickt: ** ${kickUser} (${kickUser.id})
-            **Gekickt door:** ${message.author}
-            **Reden:** ${Reason}`);
-
-
-        message.channel.send(embedPrompt).then(async msg =>{
-
-            var emoji = await promptMessage(msg, message.author, 30, ["✔", "❌"]);
-
-            if(emoji === "✔"){
-
-                msg.delete();
-
-                kickUser.kick(Reason).catch(err => {
-                    if (err) return message.reply("Er is iets foutgelopen! Probeer het opnieuw!")
-                });
-
-                message.channel.send(embed);
-              
-            }else if(emoji === "❌"){
-
-                msg.delete();
-
-                (await message.reply("Kick geanuleerd")).then(m => m.delete(5000));
-
-            }
-        })
-    }
 
     // STRAF
     if(command === `${prefix}straf`){
@@ -148,6 +94,7 @@ client.on("message", async message =>{
         }, ms(muteTime));
     }
 
+
     // COMMANDS
     if(command === `${prefix}commands`){
         
@@ -163,6 +110,7 @@ client.on("message", async message =>{
         .setTimestamp()
         return message.channel.send(botEmbed);
     }
+
 
     // SERVERINFO
     if(command === `${prefix}serverinfo`){
@@ -180,20 +128,6 @@ client.on("message", async message =>{
         return message.channel.send(botEmbed);
     }
 });
-
-
-async function promptMessage(message, author, time, reactions){
-
-    time *= 1000;
-
-    for(const reaction of reactions){
-        await message.react(reactoin);
-    }
-
-    var filter = (reaction, user) => reactions.inculudes(reaction.emoji.name) && user.id === author.id;
-
-    return message.awaitReactions(filter, {max:1, time: time}).then(collected.first() && collected.first().emoji.name);
-}
 
 
 client.login(token).catch(err => console.log(err));

@@ -128,8 +128,8 @@ client.on("message", async message =>{
             return message.reply("Je hebt geen tijd ingevuld!")
         }
 
-        person.remove.role(mainrole.id);
-        person.add.role(muterole.id);
+        person.roles.remove(mainrole.id);
+        person.roles.add(muterole.id);
 
         message.channel.send(`${person.user.tag} is nu gestraft voor ${ms(ms(time))}`);
 

@@ -144,7 +144,7 @@ client.on("message", async message =>{
         .addFields(
             {name: "Help command", value:"&help"},
             {name: "Info over de server", value:"&serverinfo"},
-            {mane: "Twitch link", value: "&twitch"},
+            {name: "Twitch link", value: "&twitch"},
             {name: "VALORANT naam + tag", value: "&valorant"}
         )
         .setFooter("Server: Dylano", "https://imgur.com/w9x1Jwe.png")

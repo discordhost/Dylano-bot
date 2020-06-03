@@ -103,6 +103,20 @@ client.on("message", async message =>{
     }
 
 
+    //VALORANT
+    if(command === `${prefix}valorant`){
+
+        var botEmbed = new discord.MessageEmbed()
+        .setTitle("VALORANT naam + tag")
+        .addField("VALORANT NAAM + TAG", "LaatMaarKomen#3746")
+        .setColor("#fa0c2d")
+        .setFooter("Server: Dylano")
+        .setTimestamp()
+
+        return message.channel.send(botEmbed);
+    }
+
+
     //TWITCH
     if(command === `${prefix}twitch`){
 
@@ -115,6 +129,7 @@ client.on("message", async message =>{
         .setColor("#9f2be2")
         .setFooter("Server: Dylano")
         .setTimestamp()
+        
         return message.channel.send(botEmbed);
     }
 
@@ -129,7 +144,8 @@ client.on("message", async message =>{
         .addFields(
             {name: "Help command", value:"&help"},
             {name: "Info over de server", value:"&serverinfo"},
-            {mane: "Twitch link", value: "&twitch"}
+            {mane: "Twitch link", value: "&twitch"},
+            {name: "VALORANT NAAM + TAG", value: "&valorant"}
         )
         .setFooter("Server: Dylano", "https://imgur.com/w9x1Jwe.png")
         .setTimestamp()

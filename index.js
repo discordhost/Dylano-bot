@@ -108,7 +108,7 @@ client.on("message", async message =>{
 
         var botEmbed = new discord.MessageEmbed()
         .setTitle("VALORANT naam + tag")
-        .addField("VALORANT NAAM + TAG", "LaatMaarKomen#3746")
+        .addField("VALORANT naam + tag", "LaatMaarKomen#3746")
         .setColor("#fa0c2d")
         .setFooter("Server: Dylano")
         .setTimestamp()
@@ -145,7 +145,7 @@ client.on("message", async message =>{
             {name: "Help command", value:"&help"},
             {name: "Info over de server", value:"&serverinfo"},
             {mane: "Twitch link", value: "&twitch"},
-            {name: "VALORANT NAAM + TAG", value: "&valorant"}
+            {name: "VALORANT naam + tag", value: "&valorant"}
         )
         .setFooter("Server: Dylano", "https://imgur.com/w9x1Jwe.png")
         .setTimestamp()

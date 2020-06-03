@@ -103,12 +103,12 @@ client.on("message", async message =>{
     }
 
 
-    //VALORANT
+    // VALORANT
     if(command === `${prefix}valorant`){
 
         var botEmbed = new discord.MessageEmbed()
         .setTitle("VALORANT naam + tag")
-        .addField("VALORANT naam + tag", "LaatMaarKomen#3746")
+        .addField("VALORANT naam + tag", "LaatMaarKomen #3746")
         .setColor("#fa0c2d")
         .setFooter("Server: Dylano")
         .setTimestamp()
@@ -117,7 +117,7 @@ client.on("message", async message =>{
     }
 
 
-    //TWITCH
+    // TWITCH
     if(command === `${prefix}twitch`){
 
         var botEmbed = new discord.MessageEmbed()

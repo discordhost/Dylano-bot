@@ -96,7 +96,10 @@ client.on("message", async message =>{
         var botEmbed = new discord.MessageEmbed()
         .setTitle("Help")
         .setDescription("Welkom bij Dylano Bot!")
-        .addField("Wil jij deze bot gebruiken?", "Gebruik dan even '&commands' zo kan je alle commands zien die je kan gebruiken met deze bot!")
+        .addFields(
+            {name: "Wil jij deze bot gebruiken?", value: "Gebruik dan even '&commands' zo kan je alle commands zien die je kan gebruiken met deze bot!"},
+            {name: "Er is een probleem met de bot!", value: "Heb jij iets opgemerkt dat niet werkt. Dan kan je altijd de owner van de bot contacteren. Discord owner: 'Dylano #3251'"}
+            )
         .setColor("#05f8f8")
         .setFooter("Server: Dylano")
         .setTimestamp()

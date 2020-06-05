@@ -109,7 +109,7 @@ client.on("message", async message =>{
         var botEmbed = new discord.MessageEmbed()
         .setTitle("VALORANT naam + tag")
         .addField("VALORANT naam + tag", "LaatMaarKomen #3746")
-        .setColor("#fa0c2d")
+        .setColor("#06eb3d")
         .setFooter("Server: Dylano")
         .setTimestamp()
 

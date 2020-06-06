@@ -163,9 +163,10 @@ client.on("message", async message =>{
         var botEmbed = new discord.MessageEmbed()
         .setTitle("Server info!")
         .addFields(
-            {name: "totaal aantal mensen op deze server:", value:message.guild.memberCount},
+            {name: "Totaal aantal mensen op deze server:", value:message.guild.memberCount},
+            {name: "Naam persoon:", value:message.username},
             {name: "Je bent lid geworden van deze server sinds:", value:message.member.joinedAt},
-            {name: "Bot naam", value:client.user.username}
+            {name: "Bot naam:", value:client.user.username}
         )
         .setColor("#05f8f8")
         .setFooter("Server: Dylano", "https://imgur.com/w9x1Jwe.png")

@@ -128,7 +128,7 @@ client.on("message", async message =>{
         .setTitle("Call of Duty MW naam")
         .setDescription("Naam en tag in geven op battle.net!")
         .addField("Call of Duty MW naam + tag", "dylano#21611")
-        .setColor("#0ceea9")
+        .setColor("#0a0ef1")
         .setFooter("Server: Dylano")
         .setTimestamp()
 

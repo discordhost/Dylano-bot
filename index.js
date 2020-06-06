@@ -111,9 +111,24 @@ client.on("message", async message =>{
     if(command === `${prefix}valorant`){
 
         var botEmbed = new discord.MessageEmbed()
-        .setTitle("VALORANT naam + tag")
+        .setTitle("VALORANT naam")
         .addField("VALORANT naam + tag", "LaatMaarKomen #3746")
         .setColor("#06eb3d")
+        .setFooter("Server: Dylano")
+        .setTimestamp()
+
+        return message.channel.send(botEmbed);
+    }
+
+
+    // CALL OF DUTY MW
+    if(command === `${prefix}MW`){
+
+        var botEmbed = new discord.MessageEmbed()
+        .setTitle("Call Of Duty MW naam")
+        .setDescription("Naam en tag in geven op battle.net!")
+        .addField("Call Of Duty MW naam + tag", "dylano#21611")
+        .setColor("#0ceea9")
         .setFooter("Server: Dylano")
         .setTimestamp()
 
@@ -149,7 +164,8 @@ client.on("message", async message =>{
             {name: "Help command", value:"&help"},
             {name: "Info over de server", value:"&serverinfo"},
             {name: "Twitch link", value: "&twitch"},
-            {name: "VALORANT naam + tag", value: "&valorant"}
+            {name: "VALORANT naam", value: "&valorant"},
+            {name: "Call Of Duty MW naam", value: "&MW"}
         )
         .setFooter("Server: Dylano", "https://imgur.com/w9x1Jwe.png")
         .setTimestamp()
@@ -164,7 +180,6 @@ client.on("message", async message =>{
         .setTitle("Server info!")
         .addFields(
             {name: "Totaal aantal mensen op deze server:", value:message.guild.memberCount},
-            {name: "Naam persoon:", value:message.username},
             {name: "Je bent lid geworden van deze server sinds:", value:message.member.joinedAt},
             {name: "Bot naam:", value:client.user.username}
         )

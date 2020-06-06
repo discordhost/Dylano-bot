@@ -122,7 +122,7 @@ client.on("message", async message =>{
 
 
     // CALL OF DUTY MW
-    if(command === `${prefix}MW`){
+    if(command === `${prefix}mw`){
 
         var botEmbed = new discord.MessageEmbed()
         .setTitle("Call Of Duty MW naam")

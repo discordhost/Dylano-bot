@@ -125,9 +125,9 @@ client.on("message", async message =>{
     if(command === `${prefix}mw`){
 
         var botEmbed = new discord.MessageEmbed()
-        .setTitle("Call Of Duty MW naam")
+        .setTitle("Call of Duty MW naam")
         .setDescription("Naam en tag in geven op battle.net!")
-        .addField("Call Of Duty MW naam + tag", "dylano#21611")
+        .addField("Call of Duty MW naam + tag", "dylano#21611")
         .setColor("#0ceea9")
         .setFooter("Server: Dylano")
         .setTimestamp()
@@ -165,7 +165,7 @@ client.on("message", async message =>{
             {name: "Info over de server", value:"&serverinfo"},
             {name: "Twitch link", value: "&twitch"},
             {name: "VALORANT naam", value: "&valorant"},
-            {name: "Call Of Duty MW naam", value: "&MW"}
+            {name: "Call of Duty MW naam", value: "&mw"}
         )
         .setFooter("Server: Dylano", "https://imgur.com/w9x1Jwe.png")
         .setTimestamp()

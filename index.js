@@ -16,23 +16,8 @@ client.on("ready", async () => {
 });
 
 
-// RANG JOIN
-client.on("guildMemberAdd", member =>{
-
-    var role = member.guild.roles.cache.get('705795057361616939');
-
-    if(!role) return;
-
-    member.roles.add(role);
-
-    var channel = member.guild.channel.cache.get('663095149915537458');
-
-    if(!channel) return;
-
-    channel.send(`Welkom bij de server ${member}`);
-
-});
-
+// ANTI-SCHELD
+var swearWords = ["Tering", "kut", "raf"];
 
 // ALLE BERICHTEN
 client.on("message", async message =>{
@@ -40,6 +25,19 @@ client.on("message", async message =>{
     if(message.author.bot) return;
 
     if(message.channel.type == "dm") return;
+
+    var message = message.content.toLowerCase();
+
+    for (let i = 0; i < swearWords.length; i++) {
+        
+        if(message.includes(swearWords[i])){
+
+            message.delete();
+
+            return message.reply("Niet vloeken!").then(message => message.delete({timeout: 3000}));
+        }
+
+    }
 
     var prefix = botConfig.prefix;
 

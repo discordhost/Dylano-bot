@@ -26,11 +26,11 @@ client.on("message", async message =>{
 
     if(message.channel.type == "dm") return;
 
-    var message = message.content.toLowerCase();
+    var msg = message.content.toLowerCase();
 
     for (let i = 0; i < swearWords.length; i++) {
         
-        if(message.includes(swearWords[i])){
+        if(msg.includes(swearWords[i])){
 
             message.delete();
 

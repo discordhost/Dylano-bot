@@ -17,7 +17,7 @@ client.on("ready", async () => {
 
 
 // ANTI-SCHELD
-var swearWords = ["Tering", "kut", "lul", "mongool", "kanker", "aids", "fck", "fack", "fuck", "fucking", "fcking", "bitch",];
+var swearWords = ["Tering", "kut", "lul", "mongool", "kanker", "aids", "fck", "fack", "fuck", "fucking", "fcking", "bitch", "pussy",];
 
 // ALLE BERICHTEN
 client.on("message", async message =>{
